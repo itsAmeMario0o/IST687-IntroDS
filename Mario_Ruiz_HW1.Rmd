@@ -1,0 +1,42 @@
+---
+title: "Mario_Ruiz_HW1"
+author: "Mario Ruiz"
+date: "1/20/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Homework 1
+> height<- c(59,60,61,58,67,72,70)
+> weight<- c(150,140,180,220,160,140,130)
+> a<- 150
+> mean(height)
+[1] 63.85714
+> mean(weight)
+[1] 160
+> length(height)
+[1] 7
+> length(weight)
+[1] 7
+> sum(height)
+[1] 447
+> sum(weight)
+[1] 1120
+> height/sum(height)
+[1] 0.1319911 0.1342282 0.1364653 0.1297539 0.1498881 0.1610738 0.1565996
+> height/7
+[1]  8.428571  8.571429  8.714286  8.285714  9.571429 10.285714 10.000000
+> weight/sum(weight)
+[1] 0.1339286 0.1250000 0.1607143 0.1964286 0.1428571 0.1250000 0.1160714
+> weight/7
+[1] 21.42857 20.00000 25.71429 31.42857 22.85714 20.00000 18.57143
+> maxH<- max(height)
+> minW<- min(weight)
+> newWeight<- weight+5
+> if (maxH > 60){print("yes")} 
+[1] "yes"
+> if (minW > a ){print("yes")}
+> 
