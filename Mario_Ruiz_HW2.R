@@ -29,6 +29,10 @@ joinMPGName
 ## Calculate a percentile of both dimensions = bestCar
 ## Clean up output
 mpgDimension <- (myCars$mpg - min(myCars$mpg)) / (myCars$mpg - max(myCars$mpg))
+## - SCALE FUNCTION 
+mpgScale <- scale(myCars$mpg)
+mpgScale
+##
 mpgDimension
 hpDimension <- (myCars$hp - min(myCars$hp)) / (myCars$hp - max(myCars$hp))
 hpDimension
@@ -37,3 +41,5 @@ bestCar <- cbind(myCars, mpgDimension, hpDimension, mergeDimensions)
 bestCar
 cleanBestCar <- bestCar[1,]
 cleanBestCar
+
+bV279z
