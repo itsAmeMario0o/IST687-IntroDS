@@ -1,0 +1,198 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={Mario\_Ruiz\_HW6},
+            pdfauthor={Mario Ruiz},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\title{Mario\_Ruiz\_HW6}
+\author{Mario Ruiz}
+\date{2/25/2020}
+
+\begin{document}
+\maketitle
+
+\hypertarget{load-airquality-data-set}{%
+\subsection{Load Airquality data set}\label{load-airquality-data-set}}
+
+my.data \textless{}- airquality my.data
+
+\hypertarget{remove-nas---first-see-what-nas-are-available}{%
+\subsection{Remove NAs - first see what NAs are
+available}\label{remove-nas---first-see-what-nas-are-available}}
+
+colSums(is.na(my.data)) \#\# Remove NAs cleandata \textless{}-
+na.omit(my.data) \#\# Verify colSums(is.na(cleandata))
+
+\hypertarget{histograms-for-each-variable}{%
+\subsection{Histograms for each
+variable}\label{histograms-for-each-variable}}
+
+library(ggplot2) ozoneViz \textless{}- ggplot(cleandata, aes(x=Ozone)) +
+geom\_histogram(bins = 10, color=``black'', fill=``red'') ozoneViz +
+ggtitle(``Ozone Information'')
+
+windViz \textless{}- ggplot(cleandata, aes(x=Wind)) +
+geom\_histogram(bins = 10, color=``black'', fill=``blue'') windViz +
+ggtitle(``Wind Information'')
+
+solarViz \textless{}- ggplot(cleandata, aes(x=Solar.R)) +
+geom\_histogram(bins = 10, color=``black'', fill=``yellow'') solarViz +
+ggtitle(``Solar Information'')
+
+tempViz \textless{}- ggplot(cleandata, aes(x=Temp)) +
+geom\_histogram(bins = 10, color=``black'', fill=``green'') tempViz +
+ggtitle(``Temp Information'')
+
+monthViz \textless{}- ggplot(cleandata, aes(x=Month)) +
+geom\_histogram(bins = 12, color=``black'', fill=``orange'') monthViz +
+ggtitle(``Month Information'')
+
+dayViz \textless{}- ggplot(cleandata, aes(x=Day)) + geom\_histogram(bins
+= 31, color=``black'', fill=``purple'') dayViz + ggtitle(``Day
+Information'')
+
+\hypertarget{boxplot-for-ozone}{%
+\subsection{Boxplot for Ozone}\label{boxplot-for-ozone}}
+
+ozoneBox \textless{}- ggplot(cleandata, aes(x=factor(0), y=Ozone)) +
+geom\_boxplot() + coord\_flip() ozoneBox + ggtitle(``Ozone Boxplot'')
+
+\#\#Boxplot for Wind windBox \textless{}- ggplot(cleandata,
+aes(x=factor(0), y=Wind)) + geom\_boxplot() + coord\_flip() windBox +
+ggtitle(``Wind Boxplot'')
+
+\hypertarget{dated-since-1973}{%
+\subsection{Dated since 1973}\label{dated-since-1973}}
+
+dated \textless{}- paste(``1973'', cleandata\(Month, cleandata\)Day, sep
+= ``-'') \#\# Sanity check dated \#\# Format date dated.v2 \textless{}-
+as.Date(dated) dated.v2 \#\# Revise with newly formated date dfdated.v2
+\textless{}- cbind(cleandata, dated.v2) dfdated.v2
+
+\hypertarget{line-chart-for-ozone}{%
+\subsection{Line chart for ozone}\label{line-chart-for-ozone}}
+
+ozLine \textless{}- ggplot(dfdated.v2, aes(x=dated.v2, y=Ozone)) +
+geom\_line(size=2, color=``green'') ozLine + ggtitle(``Ozone Line
+Chart'')
+
+\hypertarget{line-chart-for-temp}{%
+\subsection{Line chart for temp}\label{line-chart-for-temp}}
+
+teLine \textless{}- ggplot(dfdated.v2, aes(x=dated.v2, y=Temp)) +
+geom\_line(size=2, color=``red'') teLine + ggtitle(``Temp Line Chart'')
+
+\hypertarget{line-chart-for-wind}{%
+\subsection{Line chart for wind}\label{line-chart-for-wind}}
+
+wiLine \textless{}- ggplot(dfdated.v2, aes(x=dated.v2, y=Wind)) +
+geom\_line(size=2, color=``blue'') wiLine + ggtitle(``Wind Line Chart'')
+
+\hypertarget{line-chart-for-solar.r}{%
+\subsection{Line chart for solar.r}\label{line-chart-for-solar.r}}
+
+ozLine \textless{}- ggplot(dfdated.v2, aes(x=dated.v2, y=Solar.R)) +
+geom\_line(size=2, color=``black'') ozLine + ggtitle(``Solar.R Line
+Chart'')
+
+\hypertarget{combine-all-into-one-chart}{%
+\subsection{Combine all into one
+chart}\label{combine-all-into-one-chart}}
+
+\hypertarget{normalize---minmax}{%
+\subsection{Normalize - Min/Max}\label{normalize---minmax}}
+
+normOz \textless{}-
+(cleandata\(Ozone - min(cleandata\)Ozone))/(max(cleandata\(Ozone)-min(cleandata\)Ozone))
+normOz normTe \textless{}-
+(cleandata\(Temp - min(cleandata\)Temp))/(max(cleandata\(Temp)-min(cleandata\)Temp))
+normTe normWi \textless{}-
+(cleandata\(Wind - min(cleandata\)Wind))/(max(cleandata\(Wind)-min(cleandata\)Wind))
+normWi normSo \textless{}-
+(cleandata\(Solar.R - min(cleandata\)Solar.R))/(max(cleandata\(Solar.R)-min(cleandata\)Solar.R))
+normSo \#\# Create new df with normalized data dfNorm \textless{}-
+data.frame(normOz, normTe, normWi, normSo,
+``Date''=dfdated.v2\(dated.v2, "Month"=dfdated.v2\)Month,
+``Day''=dfdated.v2\(Day) ## Plot it everything <- ggplot(dfNorm, aes(x=dated.v2)) + geom_line(aes(y=normOz), size=1, color="blue") + geom_line(aes(y=normTe), size=1, color="red") + geom_line(aes(y=normWi), size=1, color="purple") + geom_line(aes(y=normSo), size=1, color="green") everything + ggtitle("Normalized Everything") + ylab("Normalized via Min/Max") ## Heatmap hmDates <- c(dfdated.v2\)dated.v2,
+dfdated.v2\(dated.v2, dfdated.v2\)dated.v2,
+dfdated.v2\(dated.v2 ) hmDay <- c(dfdated.v2\)Day,
+dfdated.v2\(Day, dfdated.v2\)Day,
+dfdated.v2\(Day) hmVars <- c(dfNorm\)normOz,
+dfNorm\(normTe, dfNorm\)normWi, dfNorm\$normSo) hmCat \textless{}-
+c(rep(``Ozone'',111), rep(``Temp'',111), rep(``Wind'',111),
+rep(``Solar.R'',111)) dfHM \textless{}-
+data.frame(hmDates,hmDay,hmVars,hmCat) hm \textless{}- ggplot(dfHM,
+aes(x-hmDay, y=hmCat, fill=hmVars)) + geom\_tile() \#\# \#\# FIX hm +
+scale\_fill\_gradient(name = ``Normal'', low =``green'', high =
+``yellow'') + ggtitle(``Air Quality Heat Map'') + ylab(``Category'') +
+xlab(``Day'') \#\#
+
+scatData \textless{}- ggplot(dfHM, aes(x = normWi, y = normTe )) +
+geom\_point(aes(size=normOz, color=normSo)) scatData +
+scale\_color\_gradient(low = ``blue'', high = ``orange'')
+
+\hypertarget{scatter-plot-for-the-win}{%
+\subsubsection{SCATTER PLOT FOR THE
+WIN!}\label{scatter-plot-for-the-win}}
+
+\end{document}
